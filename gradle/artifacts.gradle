@@ -2,6 +2,40 @@
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
+group = PROJ_GROUP
+
+// Configure android-maven-gradle-plugin
+install.repositories.mavenInstaller.pom.project {
+
+    name PROJ_NAME
+    description PROJ_NAME
+    packaging POM_PACKAGING
+    url POM_URL
+
+    licenses {
+        license {
+            name POM_LICENCE_NAME
+            url POM_LICENCE_URL
+            distribution POM_LICENCE_DIST
+        }
+    }
+
+    scm {
+        url POM_SCM_URL
+        connection POM_SCM_CONNECTION
+        developerConnection POM_SCM_DEV_CONNECTION
+    }
+
+    developers {
+        developer {
+            id DEVELOPER_ID              // your user id (you can write your nickname)
+            name DEVELOPER_NAME          // your user name
+            email DEVELOPER_EMAIL        // your email
+        }
+    }
+
+}
+
 if (project.plugins.hasPlugin('com.android.library')) {
     android.libraryVariants.all { variant ->
         Task javadocTask = task("generate${variant.name.capitalize()}Javadoc", type: Javadoc) {
@@ -75,4 +109,20 @@ if (project.plugins.hasPlugin('com.android.library')) {
 if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
     bintray.user = project.bintrayUser
     bintray.key = project.bintrayKey
+}
+
+// Configure gradle-bintray-plugin (for publishing releases)
+bintray {
+    configurations = ['archives']
+
+    publish = true
+
+    pkg {
+        repo = 'maven'
+        name = PROJ_NAME
+        licenses = ['Apache-2.0']
+        websiteUrl = POM_URL
+        issueTrackerUrl = POM_ISSUE_URL
+        vcsUrl = POM_VCS_URL
+    }
 }

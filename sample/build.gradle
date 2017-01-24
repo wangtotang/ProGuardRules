@@ -35,6 +35,6 @@ dependencies {
     compile "com.android.support:appcompat-v7:${lib.supportVersion}"
     compile "com.android.support:cardview-v7:${lib.supportVersion}"
     testCompile "junit:junit:${test.junit}"
-    compile project(':library')
+    compile project(':proguardrules')
 
 }

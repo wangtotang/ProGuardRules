@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+
+def cfg = rootProject.ext.configuration
+
+version = '1.0.0'
+
+android {
+    compileSdkVersion cfg.compileSdkVersion
+    buildToolsVersion cfg.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
+        versionCode 1
+        versionName project.version
+
+    }
+    buildTypes {
+        release {
+            consumerProguardFiles fileTree(dir: 'rules', include: ['*.pro']).asList().toArray()
+        }
+    }
+}
+
+dependencies {
+
+}
+
+// Create source/javadoc artifacts for publishing
+apply from: "$rootDir/gradle/artifacts.gradle"
