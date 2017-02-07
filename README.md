@@ -136,7 +136,7 @@
 
 ### LICENSE
 
-    Copyright 2017 the ProGuardRules author
+    Copyright 2017 the ProGuardRules Author
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
